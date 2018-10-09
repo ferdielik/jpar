@@ -1,15 +1,20 @@
 # Pretty Json Parser
 This tool helps to show the json data collected from different sources in a single format.
 
+## Install
+```
+pip install jpar
+```
+
 ## Result
-###Inputs
+### Inputs
 ```
 {"name":"Sherlock","surname":"Holmes","age":87} // source 1
 {"firstname":"Steve","lastsurname":"Jobs","userAge":111,"useless":"dummy"} // source 2
 {"f":"Albert","l":"Einstein","a":37} // source 3
 ```
 
-###Output
+### Output
 ```
 [
   {
@@ -53,6 +58,8 @@ Only you have to define format files, for above example format files
 
 For the results
 ```
+from jpar.parser import jpar_with_file
+
 results = []
 results.append(jpar_with_file('data/source1.json', 'format/source1_format.json'))
 results.append(jpar_with_file('data/source2.json', 'format/source2_format.json'))

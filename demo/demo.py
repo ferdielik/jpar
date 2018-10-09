@@ -1,7 +1,7 @@
 import json
 import os
 
-from src.pretty_parser import parse
+from jpar.parser import parse
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))

@@ -1,5 +1,7 @@
 import re
 
+# i know its ugly, todo: refactor
+
 ARRAY_START = "##[##"
 ARRAY_END = "##]##"
 
@@ -116,11 +118,3 @@ def parse(format, data, field_converters={}, ignored_fields=[]):
     if len(results) < 1:
         results.append(result)
     return results
-
-
-def jpar_with_file(data_path, format_path, field_converters):
-    pass  # implement
-
-
-def jpar_with_url(data_path, format_path, field_converters):
-    pass  # implement
