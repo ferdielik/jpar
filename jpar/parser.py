@@ -98,23 +98,33 @@ def parse(format, data, field_converters={}, ignored_fields=[]):
         if is_array_end(format_lines[format_index]):
             array_length = format_index - array_start_index
             format_index -= array_length
-            results.append(result)
+            if bool(result):
+                results.append(result)
             result = {}
 
         format_label = get_label(format_lines[format_index])
         number = is_number(format_lines[format_index])
         if format_label is not None:
-            if is_valid(data_lines[data_index], format_lines[format_index]):
-                value = get_value(format_lines[format_index], data_lines[data_index])
-                value = value.replace('"', '')
-                if number:
-                    add_field_to_result(field_converters, format_label, result, float(value), ignored_fields)
-                else:
-                    add_field_to_result(field_converters, format_label, result, value, ignored_fields)
-                # warn('%r||%s|%s|: |%s| --> |%s|' % (
-                # number, format_label, value, format_lines[format_index], data_lines[data_index]))
-            else:
-                data_index -= 1
-    if len(results) < 1:
+            data_index = find_value(data_index, data_lines, field_converters, format_index, format_label, format_lines,
+                                    ignored_fields, number, result)
+    if len(results) < 1 and bool(result):
         results.append(result)
     return results
+
+
+def find_value(data_index, data_lines, field_converters, format_index, format_label, format_lines, ignored_fields,           number, result):
+    format_line = format_lines[format_index]
+
+    for line in data_lines:
+        if is_valid(line, format_line):
+            value = get_value(format_line, line)
+            value = value.replace('"', '')
+            if number:
+                add_field_to_result(field_converters, format_label, result, float(value), ignored_fields)
+            else:
+                add_field_to_result(field_converters, format_label, result, value, ignored_fields)
+            # warn('%r||%s|%s|: |%s| --> |%s|' % (
+            # number, format_label, value, format_line, line))
+        # else:
+            # data_index -= 1
+    return data_index

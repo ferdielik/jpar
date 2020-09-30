@@ -1,0 +1,14 @@
+{
+  ##[##"##pair|S##": {
+    "avg24hr":##dummy##,
+    "change": ##change|N##,
+    "high24hr": ##high|N##,
+    "highestBid": ##bid|N##,
+    "last": ##last|N##,
+    "low24hr": ##low|N##,
+    "lowestAsk": ##ask|N##,
+    "percentChange": ##changePercent|N##,
+    "volume": ##volume|N##
+  },
+  ##]##
+}

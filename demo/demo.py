@@ -26,6 +26,11 @@ def main():
     print(results)
 
 
+def test():
+    result = parse_user('data/paribu.json', 'format/paribu.json')
+    print(result)
+
+
 if __name__ == "__main__":
     # execute only if run as a script
-    main()
+    test()

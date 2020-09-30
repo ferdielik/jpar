@@ -1,5 +1,6 @@
-# Pretty Json Parser
-This tool helps to show the json data collected from different sources in a single format.
+# Different way parse a json data
+
+This library easly convert json data to wanted format.
 
 ## Install
 ```
